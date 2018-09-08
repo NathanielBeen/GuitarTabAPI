@@ -7,8 +7,10 @@ a REST API that extends the functionality of the GuitarTab application
 ### Ratings
 #### GET /ratings
 Gets a list of all song ratings.
-In: no input
-Out: A list of results, each with properties {Id (int), SongId (int), UserId (int), Rating (double), Text (string), Name (string)}
+
+**In**: no input
+
+**Out**: A list of results, each with properties {Id (int), SongId (int), UserId (int), Rating (double), Text (string), Name (string)}
 #### POST /ratings
 Adds a rating to a song
 In: valid user token (in header), {song_id (int), user_id (int), rating (double), text (string)} in body
