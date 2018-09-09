@@ -1,7 +1,24 @@
 # GuitarTabAPI
-a REST API that extends the functionality of the GuitarTab application
+a REST API that extends the functionality of the GuitarTab application written using NodeJS and Express against a MySQL database. This includes functions such as uploading songs, searching for songs to view, creating and managing an account, and a suite of admin functionality.
+
+## Goals
+When creating this project, I had only once before written a "back-end" style program, code written in PHP for an ecommerce site. While that project had been very informative and fostered great growth, I had made a number of mistakes and sought to fix them in this iteration. These goals included:
+- use password encryption, OAuth tokens, and other basic security features.
+- use a unit testing library to write a comprehensive set of tests
+- learn common API practices
 
 ## Routes
+Each route for the API is described below, each with a brief description, a description of the proper input, and description of the proper output. When a token is requested to be placed in the header, it should be attached to the 'x-access-token' header. When information is to be placed in the "body", send the data formatted as JSON along with request. All output data will also be inserted as JSON in the body of the response.
+### Errors
+When an input is formatted property, the correct authentication is not sent, or an other error occurs, instead of sending the typical result, the following error object will be sent
+```
+{
+  "code" : either 400 (validation error), 401 (auth error), or 500 (database error) (int)
+  "message" : a description of the error (string)
+  "error_type" : either 0 (validation error), 1 (auth error), or 2 (database error) (int)
+  "needed_auth" : only present on auth errors, either 0 (login needed), 1 (admin login needed), 2 (token needed), 3 (admin token needed), 4 (provided user is not the author) (int)
+}
+```
 ### Songs
 #### Song Models
 When a Song is returned, it will come as the following object:
